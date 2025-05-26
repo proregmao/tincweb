@@ -10,3 +10,8 @@ export const createUser = async (username, password, role='user') => {
   const { lastID } = await db.run('INSERT INTO users (username, password, role) VALUES (?, ?, ?)', username, password, role);
   return { id: lastID, username, role };
 };
+
+export const updatePassword = async (id, password) => {
+  const db = await getDb();
+  await db.run('UPDATE users SET password = ? WHERE id = ?', password, id);
+};
