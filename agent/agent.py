@@ -22,8 +22,8 @@ def main():
     while True:
         try:
             status = get_status()
-            requests.post(f'{SERVER_URL}/api/client/ping', headers=headers, data=json.dumps({'client_id': CLIENT_ID, **status}))
-            resp = requests.get(f'{SERVER_URL}/api/client/config/{CLIENT_ID}', headers=headers)
+            requests.post(f'{SERVER_URL}/api/clients/ping', headers=headers, data=json.dumps({'client_id': CLIENT_ID, **status}))
+            resp = requests.get(f'{SERVER_URL}/api/clients/config/{CLIENT_ID}', headers=headers)
             if resp.status_code == 200:
                 print('config fetched')
         except Exception as e:

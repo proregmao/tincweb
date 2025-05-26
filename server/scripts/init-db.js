@@ -44,6 +44,13 @@ const sql = `
 
 db.exec(sql, (err) => {
   if (err) throw err;
-  console.log('✅ 数据库初始化完成');
-  db.close();
+  db.get("SELECT id FROM users WHERE username='admin'", (err2, row) => {
+    if (err2) throw err2;
+    if (!row) {
+      db.run("INSERT INTO users (username, password, role) VALUES ('admin', '$2b$10$g9Ggq.xwq8fErM5LBQQxneMAu30mZ4fcK/R713N4QeZyjdrg0dpWm', 'admin')");
+      console.log('Created default admin user');
+    }
+    console.log('✅ 数据库初始化完成');
+    db.close();
+  });
 });
