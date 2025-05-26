@@ -1,22 +1,24 @@
 # Tincweb
 
-Minimal prototype of Tinc VPN management system.
+Prototype of a Tinc VPN management system.
 
 ## Server
 
-Run the simple Python server:
+Install dependencies and start the Node.js server:
 
 ```bash
-python3 tincweb/server/index.py
+cd server
+npm install
+node scripts/init-db.js    # create the SQLite database
+npm start
 ```
 
-An initial `admin` user with password `admin` is created automatically.
+The default `admin` user with password `admin` will be created during DB initialization.
 
 ## Agent
 
 Run the Python agent to report status to the server:
 
 ```bash
-python3 tincweb/agent/agent.py
+python3 agent/agent.py
 ```
-
